@@ -64,13 +64,15 @@ def backprojection_saliency(internal_img):
 
 # if __name__ == "__main__":
 
-images_foler_dir = r"C:\Users\Mr.Wrong\Documents\GitHub\test_images"
+images_foler_dir = r"C:\Users\Mr.Wrong\Documents\GitHub\test_images_2"
+width = 320
+height = 240
 
 for root, dirs, files in os.walk(images_foler_dir):
     for file in files:
         if os.path.splitext(file)[1] == '.jpg':
             img = cv2.imread(os.path.join(root, file), cv2.IMREAD_COLOR)
-            img = cv2.resize(img, (int(640/2), int(480/2)))
+            img = cv2.resize(img, (width, height))
             mask = backprojection_saliency(img)
             segmentation = img*mask[:, :, np.newaxis]
 
